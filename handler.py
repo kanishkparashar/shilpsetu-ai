@@ -53,9 +53,15 @@ MASTER_PROMPTS = load_master_prompts()
 
 print("Loading FLUX.1 Schnell...")
 
+HF_TOKEN = os.environ.get("HF_TOKEN")
+
+if not HF_TOKEN:
+    raise RuntimeError("HF_TOKEN environment variable is not set")
+
 pipe = FluxPipeline.from_pretrained(
     MODEL_ID,
-    torch_dtype=torch.bfloat16
+    torch_dtype=torch.bfloat16,
+    token=HF_TOKEN
 )
 
 pipe.enable_model_cpu_offload()
