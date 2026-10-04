@@ -6,4 +6,3 @@ safetensors
 Pillow
 sentencepiece
 huggingface_hub
-protobuf
